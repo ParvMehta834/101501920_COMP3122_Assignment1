@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "17a0bc42-23eb-4ad8-8b20-1ebb22f2e2de",
+		"name": "COMP3123_Assignment1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48983332",
+		"_collection_link": "https://martian-capsule-9386038.postman.co/workspace/101501920p's-Workspace~500c09d8-f3a5-43cf-83aa-af4fbede4676/collection/48983332-17a0bc42-23eb-4ad8-8b20-1ebb22f2e2de?action=share&source=collection_link&creator=48983332"
+	},
+	"item": [
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch All Employees",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Create Employee",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Fetch Employee by ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Update Employee by I",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Employee by ID",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "ERROR - Validation Example",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
