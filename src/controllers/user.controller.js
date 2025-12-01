@@ -14,36 +14,60 @@ export const signup = async (req, res) => {
     }
 
     const user = await User.create({ username, email, password });
+
     return res.status(201).json({
-      message: "User created successfully.",
-      user_id: user._id
+      status: true,
+      message: "User registered successfully.",
+      user: {
+        id: user._id,
+        username: user.username,
+        email: user.email
+      }
     });
   } catch (error) {
-    return res.status(500).json({ status: false, message: error.message });
+    console.error(error);
+    res.status(500).json({ status: false, message: error.message });
   }
 };
 
 export const login = async (req, res) => {
   try {
     const { email, username, password } = req.body;
-    const user = await User.findOne(email ? { email } : { username });
 
-    if (!user || !(await user.comparePassword(password))) {
-      return res.status(401).json({
+    // allow login by email OR username
+    const query = {};
+    if (email) query.email = email;
+    if (username) query.username = username;
+
+    const user = await User.findOne(query);
+    if (!user) {
+      return res.status(400).json({
         status: false,
-        message: "Invalid Username and password"
+        message: "Invalid credentials"
       });
     }
 
-    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "1d"
-    });
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(400).json({
+        status: false,
+        message: "Invalid credentials"
+      });
+    }
+
+    const token = jwt.sign(
+      { id: user._id, email: user.email },
+      process.env.JWT_SECRET,
+      { expiresIn: process.env.JWT_EXPIRES_IN || "1d" }
+    );
 
     res.status(200).json({
+      status: true,
       message: "Login successful.",
-      jwt_token: token
+      token // <-- frontend will use this
     });
   } catch (error) {
-    res.status(500).json({ status: false, message: error.message });
-  }
+    console.error(error);
+    res.status(500).json({ status: false, message: error.message });
+  }
 };
